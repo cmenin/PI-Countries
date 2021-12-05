@@ -25,6 +25,8 @@ const { map } = require('./src/app.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(async() => {
+
+  //quiero que se haga esto antes de levantar el servidor
   const verificacion = await Country.findAll()
   if(verificacion.length < 1){
     const pedido= await axios.get('https://restcountries.com/v3/all')
@@ -33,7 +35,7 @@ conn.sync({ force: false }).then(async() => {
         id: el.cca3,
         name: el.name.official,
         capital: el.capital,
-        region: el.region,
+        continents: el.continents,
         subregion: el.subregion,
         area: el.area,
         population: el.population,

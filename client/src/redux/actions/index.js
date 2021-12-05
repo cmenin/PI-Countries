@@ -1,0 +1,26 @@
+import axios from 'axios';
+
+const URL_GET = 'http://localhost:3001/country'
+
+//traer paises
+export function obtain(){
+    return async function(dispatch){
+        //con el dispatch le mandamos la accion al reducer.
+       let pedido= await axios.get(URL_GET) // conexion con el back
+
+        dispatch({
+        type: 'OBTENER_PAIS',
+        payload: pedido.data
+        //porque axios trae la info a traves de data
+        })       
+    }
+}
+
+export function obtainOne(id){
+    return{
+        type: 'BUSQUEDA_ONE',
+        payload: id
+    }
+}
+//dispatch---acciones+info-->reducer(gestiona lo que envia el dispatch)--->estado redux
+                                    //---> le avisa a todos los componentes que se produjo un cambio.

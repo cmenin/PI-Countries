@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "the capital is not found"
     },
-    region:{
+    continents:{
       type: DataTypes.STRING,
       allowNull:false
     },
