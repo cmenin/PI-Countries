@@ -35,7 +35,7 @@ conn.sync({ force: false }).then(async() => {
         id: el.cca3,
         name: el.name.official,
         capital: el.capital,
-        continents: el.continents,
+        region: el.region,
         subregion: el.subregion,
         area: el.area,
         population: el.population,

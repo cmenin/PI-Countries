@@ -5,10 +5,11 @@ const initialState = {
     
 }
 
+//primero el estado, dsps la accion.
 const rootReducer = (state = initialState, action)=>{
-    console.log(action,"qwertyhtgrfedswdfghj")
     switch(action.type){
         case 'OBTENER_PAIS':
+            console.log(action.payload)
             return{
                 //siempre hay que devolver una copia del estado, para no perderlo.
                 ...state,

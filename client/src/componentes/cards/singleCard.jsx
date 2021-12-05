@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function SingleCard({name,flag,continents}){
+export default function SingleCard({id,name,flag,continents}){
     return(
-        <div key="1">
+        <div key={id}>
             <div>
                 <h2>{name}</h2>
                 <img src={flag} alt="Flags of countries"/>
