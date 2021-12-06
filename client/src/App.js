@@ -16,14 +16,16 @@ function App() {
   }, [dispatch]);
 
   return (
+    <Router>
       <div className="App">
-        <h1>Welcome to the country</h1>
         <Routes>  
           <Route path="/countries" element={<AllCard />} />
           <Route path="/activity" element={<Form/>} />
         </Routes>
-       
+
       </div>
+    </Router>
+       
   );
 }
 

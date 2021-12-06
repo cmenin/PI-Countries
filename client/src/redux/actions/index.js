@@ -30,7 +30,7 @@ export function postActivity(payload){
     }
 }
 
-export default function orderDes(payload) {
+export function orderDes(payload) {
     return{
         type: 'ORDER_DES',
         payload,
