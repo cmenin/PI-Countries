@@ -6,6 +6,7 @@ import AllCard from "./componentes/cards/allCards";
 import Form from "./componentes/formulario/formulario";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
 function App() {
   //traer cosas del back
   const dispatch = useDispatch();
@@ -16,9 +17,9 @@ function App() {
 
   return (
       <div className="App">
-        
+        <h1>Welcome to the country</h1>
         <Routes>  
-          <Route path="/country" element={<AllCard />} />
+          <Route path="/countries" element={<AllCard />} />
           <Route path="/activity" element={<Form/>} />
         </Routes>
        

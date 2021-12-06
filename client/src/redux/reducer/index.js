@@ -18,6 +18,21 @@ const rootReducer = (state = initialState, action)=>{
                 country: action.payload, //arreglo de paises.
                 secondCountry: action.payload,
             }
+
+        case 'ORDER_DES' :{
+            return{
+                ...state,
+                country:state.secondCountry.sort((a,b)=>{
+                    if(a.name.toLowerCase() < b.name.toLowerCase()){
+                        return 1
+                    }
+                    if(b.name.toLowerCase() < a.name.toLowerCase()){
+                        return -1
+                    }
+                    return 0
+                })
+            }
+        }   
             case 'BUSQUEDA_ONE':
                 return{
                     

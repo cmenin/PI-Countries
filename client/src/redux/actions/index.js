@@ -29,5 +29,13 @@ export function postActivity(payload){
        return created
     }
 }
+
+export default function orderDes(payload) {
+    return{
+        type: 'ORDER_DES',
+        payload,
+    }
+}
+
 //dispatch---acciones+info-->reducer(gestiona lo que envia el dispatch)--->estado redux
                                     //---> le avisa a todos los componentes que se produjo un cambio.
