@@ -22,5 +22,12 @@ export function obtainOne(id){
         payload: id
     }
 }
+
+export function postActivity(payload){
+    return async function(dispatch){
+        const created = await axios.post('http://localhost:3001/activity',payload)
+       return created
+    }
+}
 //dispatch---acciones+info-->reducer(gestiona lo que envia el dispatch)--->estado redux
                                     //---> le avisa a todos los componentes que se produjo un cambio.

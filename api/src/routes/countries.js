@@ -25,6 +25,7 @@ if(req.query.name ){
     res.json(allCountries)
 }
 
+
 })
 
 router.get('/:id',async(req,res)=>{
@@ -38,6 +39,8 @@ if(forId){
 }
 
 })
+
+
 
 
 
