@@ -18,8 +18,9 @@ export default function FiltroPoblacion(){
     return(
         <div>
             <select onChange={e=>{handleFilterPoblacion(e)}}>
-                <option value="mayor">Mayor poblacion</option>
-                <option value="menor">Menor poblacion</option>
+                <option value="">Population</option>
+                <option value="mayor">Higher population</option>
+                <option value="menor">Smaller population</option>
             </select>
         </div>
     )

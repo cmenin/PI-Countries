@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL_GET = 'http://localhost:3001/country'
+const URL_GET = 'http://localhost:3001/countries/'
 
 
 //traer paises
@@ -9,7 +9,7 @@ export function obtain(){
         //con el dispatch le mandamos la accion al reducer.
        let pedido= await axios.get(URL_GET) // conexion con el back
 
-        dispatch({
+      return  dispatch({
         type: 'OBTENER_PAIS',
         payload: pedido.data
         //porque axios trae la info a traves de data
@@ -19,11 +19,16 @@ export function obtain(){
 
 export function obtainPorId(id){
     return async function(dispatch){
-        const porId = await axios.get(URL_GET + id)
-        dispatch({
-            type: 'OBTENER_ONE',
-            payload: porId.data
-        })
+        try{
+            
+            const porId = await axios.get(URL_GET+ '/detail/' + id)
+           return dispatch({
+                type: 'OBTENER_ONE',
+                payload: porId.data
+            })
+        }catch(error){
+            console.log("no activity found")
+        }
     }
 
 }
@@ -52,6 +57,13 @@ export function getFilterContinents(payload){
 export function getFilterPoblacion(payload){
     return{
         type: 'FILTER_BY_POBLACION',
+        payload
+    }
+}
+
+export function filterActivity(payload){
+    return{
+        type: 'FILTER_BY_ACTIVITY',
         payload
     }
 }

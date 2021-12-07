@@ -28,7 +28,7 @@ if(req.query.name ){
 
 })
 
-router.get('/:id',async(req,res)=>{
+router.get('/detail/:id',async(req,res)=>{
     const forId = await Country.findByPk(req.params.id, {
         include: Activity
     })

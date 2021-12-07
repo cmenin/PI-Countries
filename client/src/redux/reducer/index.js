@@ -34,10 +34,18 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
     }
-    case "BUSQUEDA_ONE":
+    case "OBTENER_ONE":
       return {
         ...state,
         detalle: action.payload
+      };
+    case 'FILTER_BY_ACTIVITY':
+      let allCoun= state.country;
+      let activitiesFilter=  action.payload === "all"? allCoun : allCoun.filter(c=>{
+          return c.activities.includes(action.payload) });
+      return {
+        ...state,
+        secondCountry: activitiesFilter.length>0? activitiesFilter: "No hay paises con actividades"
       };
     
     case "FILTER_BY_CONTINENTS":

@@ -7,7 +7,7 @@ import {getFilterContinents, obtain} from "../../redux/actions/index"
 export default function FiltroContinente(){
 
     const dispatch = useDispatch();
-    const allContinents = useSelector((state)=> state.secondCountry)
+    // const allContinents = useSelector((state)=> state.secondCountry)
 
     function handleFilterContinente(e){
         dispatch(getFilterContinents(e.target.value))
