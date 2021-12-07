@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const URL_GET = 'http://localhost:3001/country'
 
+
 //traer paises
 export function obtain(){
     return async function(dispatch){
@@ -16,11 +17,15 @@ export function obtain(){
     }
 }
 
-export function obtainOne(id){
-    return{
-        type: 'BUSQUEDA_ONE',
-        payload: id
+export function obtainPorId(id){
+    return async function(dispatch){
+        const porId = await axios.get(URL_GET + id)
+        dispatch({
+            type: 'OBTENER_ONE',
+            payload: porId.data
+        })
     }
+
 }
 
 export function postActivity(payload){

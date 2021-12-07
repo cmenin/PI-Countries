@@ -5,6 +5,7 @@ import { obtain } from "./redux/actions/index";
 import AllCard from "./componentes/cards/allCards";
 import Form from "./componentes/formulario/formulario";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Detail from "./componentes/cards/detail";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>  
+          <Route path="/detail/:id" element={<Detail/>}/>
           <Route path="/countries" element={<AllCard />} />
           <Route path="/activity" element={<Form/>} />
         </Routes>

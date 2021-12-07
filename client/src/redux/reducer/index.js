@@ -1,7 +1,8 @@
 const initialState = {
   country: [],
   secondCountry: [],
-//   continent:[]
+    detalle:[]
+
 };
 
 //primero el estado, dsps la accion.
@@ -15,7 +16,7 @@ const rootReducer = (state = initialState, action) => {
         //piso el stado que quiero modificar.
         country: action.payload, //arreglo de paises.
         secondCountry: action.payload,
-        // continent: action.payload,
+        
       };
 
     case "ORDER_DES": {
@@ -35,7 +36,8 @@ const rootReducer = (state = initialState, action) => {
     }
     case "BUSQUEDA_ONE":
       return {
-
+        ...state,
+        detalle: action.payload
       };
     
     case "FILTER_BY_CONTINENTS":
