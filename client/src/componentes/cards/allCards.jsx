@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Order from "../order/order.jsx";
 import SingleCard from "./singleCard";
 import FiltroContinente from "../order/filtradoContinente";
+import FiltroPoblacion from "../order/filtradoPoblacion";
 import { obtain } from "../../redux/actions/index";
 // /redux/actions/index";
 export default function AllCard() {
   //variable que guarda el estado global.
-  
+
   const estado = useSelector((state) => state.secondCountry);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function AllCard() {
       <h1>App Countries</h1>
       <Order />
       <FiltroContinente />
+      <FiltroPoblacion />
 
       <div>
         {estado?.map((c) => (

@@ -43,5 +43,12 @@ export function getFilterContinents(payload){
         payload
     }
 }
+
+export function getFilterPoblacion(payload){
+    return{
+        type: 'FILTER_BY_POBLACION',
+        payload
+    }
+}
 //dispatch---acciones+info-->reducer(gestiona lo que envia el dispatch)--->estado redux
                                     //---> le avisa a todos los componentes que se produjo un cambio.

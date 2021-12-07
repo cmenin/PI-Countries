@@ -46,6 +46,21 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           secondCountry: continentFilter
       }
+    
+    case "FILTER_BY_POBLACION":
+        if (action.payload === "menor")
+        return {
+          ...state,
+          secondCountry: [...state.secondCountry].sort((a, b) =>
+            a.population > b.population ? 1 : -1
+          ),
+        };
+      return {
+        ...state,
+        secondCountry: [...state.secondCountry].sort((a, b) =>
+          a.population > b.population ? -1 : 1
+        ),
+      };
 
         default:
           return state;
