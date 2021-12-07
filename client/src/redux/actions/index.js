@@ -37,5 +37,11 @@ export function orderDes(payload) {
     }
 }
 
+export function getFilterContinents(payload){
+    return{
+        type: 'FILTER_BY_CONTINENTS',
+        payload
+    }
+}
 //dispatch---acciones+info-->reducer(gestiona lo que envia el dispatch)--->estado redux
                                     //---> le avisa a todos los componentes que se produjo un cambio.
