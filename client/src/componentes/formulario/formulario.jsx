@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux"
 import { obtain } from "../../redux/actions";
 import {postActivity} from '../../redux/actions/index.js'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 export default function Form(){
     const dispatch = useDispatch()
@@ -12,7 +12,7 @@ export default function Form(){
     const [activity,setActivity] = useState({
         name: "",
         season:"",
-        country:""
+        countries:[]
     })
 
    const handleChange =(e)=>{
@@ -22,17 +22,27 @@ export default function Form(){
        })
 
     }
+   const handleDelete =(id)=>{
+       setActivity({
+           ...activity,
+           countries: activity.countries.filter(el=> el !== id)
+       })
 
-    const handelSelect =(e) =>{
+    }
+
+
+    const handleSelect =(e) =>{
+        let aux= e.target.value.split(",")
+        console.log(aux, "aux")
         setActivity({
             ...activity,
-            country:[...activity.country, e.target.value]
+            countries:[...activity.countries, aux]
         })
     }
 
     const handleSubmit = (e) =>{
         // e.preventDefault()
-        // console.log(activity)
+        console.log(activity)
         dispatch(postActivity(activity));
         setActivity({});
         alert("activity created!!!");
@@ -45,6 +55,11 @@ export default function Form(){
 
     return (
         <div>
+            <Link to="/countries">
+                <button>
+                    <b>Home</b>
+                </button>
+            </Link>
            <form onSubmit={(e)=>handleSubmit(e)}>
                <label >Name</label>
                <input name="name" type="text" value={activity.name} onChange={handleChange}/>
@@ -52,7 +67,7 @@ export default function Form(){
                <input name="duration" type="number" value={activity.duration} onChange={handleChange}/>
                <label >difficulty</label> 
                {/* <input  name="difficulty"  vale={activity.difficulty} onChange={handleChange}/> */}
-               <select name="difficult" onChange={handleChange} >
+               <select name="difficulty" onChange={handleChange} >
                    <option value="">---</option>
                    <option value="1">1</option>
                    <option value="2">2</option>
@@ -71,12 +86,28 @@ export default function Form(){
                </select>
 
                <label >Country</label>
-               <select name="country" onChange={e=> handelSelect(e)}>
+               <select name="countries" id="countries" onChange={e=> handleSelect(e) }>
+                   <option value="" name="countries">Country</option>
                    {countriesForm?.map((count)=>(
-                   <option key={count.id} value={count.id}>{count.name}</option>
+                   <option key={count.id} value={[count.id, count.name]}>{count.name}</option>
                     ))}
                </select>
-                <button type="submit">CREAR</button>
+
+                    <ul>
+                        <li>
+                            {
+                                activity.countries?.map(el=> { 
+                                   return (
+                                       <div key={el.id}>
+                                            {el[1]}
+                                        <button name={el} type="button" onClick={()=> handleDelete(el)}>X</button>
+                                        </div>
+                                   )})
+                            }
+                        </li>
+                    </ul>
+
+                <button type="submit">CREATE</button>
            </form>
         </div>
     )

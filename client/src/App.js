@@ -6,6 +6,7 @@ import AllCard from "./componentes/cards/allCards";
 import Form from "./componentes/formulario/formulario";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Detail from "./componentes/cards/detail";
+import LandingPage from "./componentes/landingPage/landingPage";
 
 
 function App() {
@@ -20,8 +21,9 @@ function App() {
     <Router>
       <div className="App">
         <Routes>  
-          <Route path="/countries/detail/:id" element={<Detail/>}/>
+          <Route path="/" element={<LandingPage/>} />
           <Route path="/countries" element={<AllCard />} />
+          <Route path="/countries/detail/:id" element={<Detail/>}/>
           <Route path="/activity" element={<Form/>} />
         </Routes>
 

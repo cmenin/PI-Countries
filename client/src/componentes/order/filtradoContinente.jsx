@@ -13,9 +13,9 @@ export default function FiltroContinente(){
         dispatch(getFilterContinents(e.target.value))
     }
 
-    useEffect(() => {
-        dispatch(obtain());
-      }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(obtain());
+    //   }, [dispatch]);
 
     return(
 

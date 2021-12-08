@@ -12,7 +12,9 @@ const allCountries = await Country.findAll({include: Activity})
 
 if(req.query.name ){
     let {name} = req.query;
+    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
     // console.log(name)
+
     const foundCountry = await Country.findAll({
         where: {
             name: {[Op.like]: `%${name}%`}

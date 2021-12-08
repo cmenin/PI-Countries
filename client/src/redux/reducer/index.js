@@ -1,23 +1,27 @@
 const initialState = {
   country: [],
   secondCountry: [],
-    detalle:[]
-
+  detalle:[],
+  activities: []
 };
 
 //primero el estado, dsps la accion.
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "OBTENER_PAIS":
-      // console.log(action.payload)
       return {
         //siempre hay que devolver una copia del estado, para no perderlo.
         ...state,
         //piso el stado que quiero modificar.
         country: action.payload, //arreglo de paises.
         secondCountry: action.payload,
-        
+        // activities: action.payload.filter(c=>c.activities.length> 0? c : null)
       };
+      case 'GET_NAME':
+        return{
+          ...state,
+          secondCountry: action.payload
+        }
 
     case "ORDER_DES": {
       if (action.payload === "A")
@@ -39,13 +43,19 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detalle: action.payload
       };
+
+      case "GET_ACTIVITY":
+        console.log(action.payload,"<------ en reducer")
+        return{
+          ...state,
+          activities: action.payload
+        }
+
     case 'FILTER_BY_ACTIVITY':
-      let allCoun= state.country;
-      let activitiesFilter=  action.payload === "all"? allCoun : allCoun.filter(c=>{
-          return c.activities.includes(action.payload) });
+      console.log(action.payload,"en reducer")
       return {
         ...state,
-        secondCountry: activitiesFilter.length>0? activitiesFilter: "No hay paises con actividades"
+        secondCountry: state.country.filter(el=>el.activities.map(e=>e.name).includes(action.payload))
       };
     
     case "FILTER_BY_CONTINENTS":

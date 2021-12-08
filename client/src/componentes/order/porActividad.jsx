@@ -1,43 +1,39 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterActivity, obtain } from "../../redux/actions";
+import { filterActivity, getActivities } from "../../redux/actions";
 
+export default function PorActividad() {
+  const dispatch = useDispatch();
 
+  const activities = useSelector((state) => state.activities);
+  let actArr = activities?.map((act) => act.name);
 
-export default function PorActividad(){
-const allCountries = useSelector(state=>state.secondCountry)
-const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getActivities());
+  }, []);
 
-useEffect(()=>{
-dispatch(obtain())
-},[dispatch])
+  function handleActivity(e) {
+    dispatch(filterActivity(e.target.value));
+  }
 
-function handleActivity(e){
-    dispatch(filterActivity(e.target.value))
-    }
-
-
-
-return(
+  return (
     <div>
-        {allCountries?.length > 0 ?  
-        <select onChange={e=>handleActivity(e)} >
-
-            <option value="all">Activities</option>
-            {
-             allCountries?.map((act)=>
+      <select onChange={(e) => handleActivity(e)}>
+        <option>Activities</option>
+        {/* {
+             actArr?.map((c)=> 
              
-                 <option value={act.activities} key={act.id}>{act.actvities}</option>
+                 <option value={c.name} key={c.id}>{c.name}</option>
                  
-               
                  )
-            }
-        </select>
-            : "NO hay paises con actividades"}
-            
-    </div>
-)
-}
-        
+            } */}
 
- 
+        {actArr?.map((act) => (
+          <option key={act} value={act}>
+            {act.charAt(0).toUpperCase() + act.slice(1).toLowerCase()}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}

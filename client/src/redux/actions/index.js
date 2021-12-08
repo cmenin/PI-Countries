@@ -16,6 +16,18 @@ export function obtain(){
         })       
     }
 }
+export function getByName(name){
+    return async function(dispatch){
+        
+       let pedido= await axios.get(`http://localhost:3001/countries?name=${name}`) 
+
+      return  dispatch({
+        type: 'GET_NAME',
+        payload: pedido.data
+        //porque axios trae la info a traves de data
+        })       
+    }
+}
 
 export function obtainPorId(id){
     return async function(dispatch){
@@ -37,6 +49,16 @@ export function postActivity(payload){
     return async function(dispatch){
         const created = await axios.post('http://localhost:3001/activity',payload)
        return created
+    }
+}
+
+export function getActivities(){
+  return  async function(dispatch){
+        const findActivity = await axios.get('http://localhost:3001/activity')
+        return dispatch({
+            type:"GET_ACTIVITY",
+            payload: findActivity.data
+        })
     }
 }
 

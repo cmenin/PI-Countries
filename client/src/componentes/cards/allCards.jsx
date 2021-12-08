@@ -6,11 +6,12 @@ import SingleCard from "./singleCard";
 import FiltroContinente from "../order/filtradoContinente";
 import FiltroPoblacion from "../order/filtradoPoblacion";
 import PorActividad from "../order/porActividad"
-import { obtain } from "../../redux/actions/index";
+import { getActivities, obtain } from "../../redux/actions/index";
 import Paginado from "../paginado/paginado.jsx";
 import { Link } from "react-router-dom";
+import SearchBar from "../searchbar/searchBar"
 
-// /redux/actions/index";
+
 export default function AllCard() {
   //variable que guarda el estado global.
 
@@ -30,23 +31,35 @@ export default function AllCard() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(obtain());
+    // dispatch(getActivities())
   }, [dispatch]);
+
+  function handleReload(e){
+    e.preventDefault()
+    dispatch(obtain())
+  }
 
   return (
     <div>
       <h1>App Countries</h1>
+
+      <SearchBar/>
+      
+      <Link to="/activity">
+        <button>
+          <b>Create activity</b>
+        </button>
+      </Link>
+
       <Order />
       <FiltroContinente />
       <FiltroPoblacion />
       <PorActividad/>
-
+      <button onClick={(e)=> handleReload(e)}>
+          <b>Reaload countries</b>
+      </button>
       
       <div>
-        {/* {estado?.map((c) => (
-          <div key={c.id}>
-            
-          </div>
-        ))} */}
       </div>
       <Paginado
       perPage={perPage}

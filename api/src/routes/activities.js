@@ -7,6 +7,15 @@ const {Activity, Country} = require('../db')
 
 // get y post
 
+router.get('/', async(req,res)=>{
+    const theActivity = await Activity.findAll();
+    // console.log(theActivity)
+    res.send(theActivity)
+})
+
+
+
+
 router.post('/', async( req,res)=>{
     const {name, difficulty, duration, season, countries} = req.body;
 console.log(countries,"soy countries")
@@ -17,8 +26,9 @@ console.log(countries,"soy countries")
             duration,
             season
         });
+        
     countries.forEach(async c=>{
-        let busqueda = await Country.findByPk(c)
+        let busqueda = await Country.findByPk(c[0])
         if(busqueda){
 
         await createActivity.addCountries(busqueda) //countries es el id de pais

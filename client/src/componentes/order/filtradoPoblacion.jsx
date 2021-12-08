@@ -11,9 +11,9 @@ export default function FiltroPoblacion(){
         dispatch(getFilterPoblacion(e.target.value))
     }
 
-    useEffect(() => {
-        dispatch(obtain());
-      }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(obtain());
+    //   }, [dispatch]);
 
     return(
         <div>
