@@ -20,14 +20,6 @@ export default function PorActividad() {
     <div>
       <select onChange={(e) => handleActivity(e)}>
         <option>Activities</option>
-        {/* {
-             actArr?.map((c)=> 
-             
-                 <option value={c.name} key={c.id}>{c.name}</option>
-                 
-                 )
-            } */}
-
         {actArr?.map((act) => (
           <option key={act} value={act}>
             {act.charAt(0).toUpperCase() + act.slice(1).toLowerCase()}

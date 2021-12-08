@@ -31,7 +31,6 @@ export default function AllCard() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(obtain());
-    // dispatch(getActivities())
   }, [dispatch]);
 
   function handleReload(e){

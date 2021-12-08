@@ -15,7 +15,6 @@ const rootReducer = (state = initialState, action) => {
         //piso el stado que quiero modificar.
         country: action.payload, //arreglo de paises.
         secondCountry: action.payload,
-        // activities: action.payload.filter(c=>c.activities.length> 0? c : null)
       };
       case 'GET_NAME':
         return{

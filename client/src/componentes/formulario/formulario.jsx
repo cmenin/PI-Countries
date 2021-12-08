@@ -8,7 +8,6 @@ export default function Form(){
     const dispatch = useDispatch()
     const countriesForm = useSelector((state)=> state.secondCountry)
     
-    
     const [activity,setActivity] = useState({
         name: "",
         season:"",
@@ -27,13 +26,11 @@ export default function Form(){
            ...activity,
            countries: activity.countries.filter(el=> el !== id)
        })
-
     }
 
 
     const handleSelect =(e) =>{
         let aux= e.target.value.split(",")
-        console.log(aux, "aux")
         setActivity({
             ...activity,
             countries:[...activity.countries, aux]
@@ -41,8 +38,6 @@ export default function Form(){
     }
 
     const handleSubmit = (e) =>{
-        // e.preventDefault()
-        console.log(activity)
         dispatch(postActivity(activity));
         setActivity({});
         alert("activity created!!!");
