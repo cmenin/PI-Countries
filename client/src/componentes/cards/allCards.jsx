@@ -6,11 +6,27 @@ import SingleCard from "./singleCard";
 import FiltroContinente from "../order/filtradoContinente";
 import FiltroPoblacion from "../order/filtradoPoblacion";
 import PorActividad from "../order/porActividad"
-import { getActivities, obtain } from "../../redux/actions/index";
+import { obtain } from "../../redux/actions/index";
 import Paginado from "../paginado/paginado.jsx";
 import { Link } from "react-router-dom";
-import SearchBar from "../searchbar/searchBar"
+import SearchBar from "../searchbar/searchBar";
+import styled from "styled-components";
+import mapa from "../../imagenes/mapa.jpg"
 
+const MyDivAll= styled.div`
+background-image: url(${mapa});
+/* background-repeat:no-repeat; */
+background-size: 100%;
+  opacity: .9;
+`
+const SideBar= styled.div`
+position: fixed;
+left: 0;
+width: 12%;
+background-color: white;
+opacity: .7 ;
+height: 20%;
+`
 
 export default function AllCard() {
   //variable que guarda el estado global.
@@ -39,9 +55,17 @@ export default function AllCard() {
   }
 
   return (
-    <div>
+    <MyDivAll>
       <h1>App Countries</h1>
 
+    <SideBar>
+      <Order />
+      <FiltroContinente />
+      <FiltroPoblacion />
+      <PorActividad/>
+
+
+    </SideBar>
       <SearchBar/>
       
       <Link to="/activity">
@@ -50,27 +74,18 @@ export default function AllCard() {
         </button>
       </Link>
 
-      <Order />
-      <FiltroContinente />
-      <FiltroPoblacion />
-      <PorActividad/>
       <button onClick={(e)=> handleReload(e)}>
           <b>Reaload countries</b>
       </button>
       
       <div>
       </div>
-      <Paginado
-      perPage={perPage}
-      estado={estado.length}
-      paginado={paginado}
-      />
         {
-                
-                currentCountry?.map((c)=>{ 
-                  
-                    return(
-                        <fragment>
+          
+          currentCountry?.map((c)=>{ 
+            
+            return(
+              <fragment>
         
                    <SingleCard
                       id={c.id}
@@ -81,8 +96,13 @@ export default function AllCard() {
                    
                         </fragment>
                    )
-               })
-            }
-    </div>
+                  })
+                }
+                <Paginado
+                perPage={perPage}
+                estado={estado.length}
+                paginado={paginado}
+                />
+    </MyDivAll>
   );
 }
