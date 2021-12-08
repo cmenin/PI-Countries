@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux"
 import { obtain } from "../../redux/actions";
 import {postActivity} from '../../redux/actions/index.js'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default function Form(){
     const dispatch = useDispatch()
@@ -50,19 +50,23 @@ export default function Form(){
 
     return (
         <div>
+            <br /><br />
             <Link to="/countries">
                 <button>
                     <b>Home</b>
                 </button>
             </Link>
+            <br /><br />
            <form onSubmit={(e)=>handleSubmit(e)}>
                <label >Name</label>
-               <input name="name" type="text" value={activity.name} onChange={handleChange}/>
+               <input name="name" type="text" value={activity.name} onChange={handleChange} required/>
+               <br /><br />
                <label >Duration minutes:</label>
-               <input name="duration" type="number" value={activity.duration} onChange={handleChange}/>
+               <input name="duration" type="number" value={activity.duration} onChange={handleChange} min="0" required />
+               <br /><br />
                <label >difficulty</label> 
-               {/* <input  name="difficulty"  vale={activity.difficulty} onChange={handleChange}/> */}
-               <select name="difficulty" onChange={handleChange} >
+              
+               <select name="difficulty" onChange={handleChange} required>
                    <option value="">---</option>
                    <option value="1">1</option>
                    <option value="2">2</option>
@@ -70,18 +74,20 @@ export default function Form(){
                    <option value="4">4</option>
                    <option value="5">5</option>
                </select>
+
+               <br /><br />
                <label >Season</label>
-               {/* <input name="season" type="text" vale={activity.season} onChange={handleChange}/> */}
-               <select name="season" onChange={e=>handleChange(e)}>
+               
+               <select name="season" onChange={e=>handleChange(e)} required>
                    <option value="">---</option>
                    <option value="Summer">Summer</option>
                    <option value="Winter">Winter</option>
                    <option value="Spring">Spring</option>
                    <option value="Autumn">Autumn</option>
                </select>
-
+<br /><br /><br />
                <label >Country</label>
-               <select name="countries" id="countries" onChange={e=> handleSelect(e) }>
+               <select name="countries" id="countries" onChange={e=> handleSelect(e) } required>
                    <option value="" name="countries">Country</option>
                    {countriesForm?.map((count)=>(
                    <option key={count.id} value={[count.id, count.name]}>{count.name}</option>
@@ -98,11 +104,13 @@ export default function Form(){
                                         <button name={el} type="button" onClick={()=> handleDelete(el)}>X</button>
                                         </div>
                                    )})
-                            }
+                                }
                         </li>
                     </ul>
 
                 <button type="submit">CREATE</button>
+                <br /><br />
+                 <button type="reset">RESET</button> 
            </form>
         </div>
     )
