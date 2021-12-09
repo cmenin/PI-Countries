@@ -1,7 +1,7 @@
 const initialState = {
   country: [],
   secondCountry: [],
-  detalle:[],
+  detalle: [],
   activities: [],
 };
 
@@ -15,13 +15,13 @@ const rootReducer = (state = initialState, action) => {
         //piso el stado que quiero modificar.
         country: action.payload, //arreglo de paises.
         secondCountry: action.payload,
-     
       };
-      case 'GET_NAME':
-        return{
-          ...state,
-          secondCountry: action.payload
-        }
+
+    case "GET_NAME":
+      return {
+        ...state,
+        secondCountry: action.payload,
+      };
 
     case "ORDER_DES": {
       if (action.payload === "A")
@@ -38,37 +38,44 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
     }
+    
     case "OBTENER_ONE":
       return {
         ...state,
         detalle: action.payload,
       };
 
-      case "GET_ACTIVITY":
-        console.log(action.payload,"<------ en reducer")
-        return{
-          ...state,
-          activities: action.payload
-        }
-
-    case 'FILTER_BY_ACTIVITY':
-      console.log(action.payload,"en reducer")
+    case "GET_ACTIVITY":
+      // console.log(action.payload, "<------ en reducer");
       return {
         ...state,
-        secondCountry: state.country.filter(el=>el.activities.map(e=>e.name).includes(action.payload))
+        activities: action.payload,
       };
-    
+
+    case "FILTER_BY_ACTIVITY":
+      // console.log(action.payload, "en reducer");
+      return {
+        ...state,
+        secondCountry: state.country.filter((el) =>
+          el.activities.map((e) => e.name).includes(action.payload)
+        ),
+      };
+
     case "FILTER_BY_CONTINENTS":
-        let allCountries = state.country;
-        let continentFilter=  action.payload === "all"? allCountries : allCountries.filter(c=>{
-            return c.region.includes(action.payload) });
-      return{
-          ...state,
-          secondCountry: continentFilter
-      }
-    
+      let allCountries = state.country;
+      let continentFilter =
+        action.payload === "all"
+          ? allCountries
+          : allCountries.filter((c) => {
+              return c.region.includes(action.payload);
+            });
+      return {
+        ...state,
+        secondCountry: continentFilter,
+      };
+
     case "FILTER_BY_POBLACION":
-        if (action.payload === "menor")
+      if (action.payload === "menor")
         return {
           ...state,
           secondCountry: [...state.secondCountry].sort((a, b) =>
@@ -82,12 +89,15 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
 
-      case 'FILTER_SELECT':
-       return{ ...state,
-         secondCountry: state.secondCountry.filter(c=>c.id !== action.payload) }
+    case "FILTER_SELECT":
+      return {
+        ...state,
+        secondCountry: state.secondCountry.filter(c => c.id !== action.payload
+        ),
+      };
 
-        default:
-          return state;
-}
+    default:
+      return state;
+  }
 };
 export default rootReducer;

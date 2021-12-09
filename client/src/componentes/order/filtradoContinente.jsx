@@ -11,7 +11,6 @@ const MySelect = styled.select`
   text-transform: uppercase;
   font-size: 0.7em;
   letter-spacing: 0.2em;
-  /* overflow: hidden; */
   box-shadow: 0 2px 5px 0;
 `;
 

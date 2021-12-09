@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux"
-import { filterSelected, obtain } from "../../redux/actions";
+import { obtain } from "../../redux/actions";
 import {postActivity} from '../../redux/actions/index.js'
 import {Link} from 'react-router-dom';
 import styled from "styled-components";
@@ -15,7 +15,7 @@ position:left;
     background-color: rgb(93, 69, 124);
     border: 3px solid #555;
     border-radius: 1%;
-    /* opacity: .9; */
+    opacity: .9;
 
 `
 
@@ -69,7 +69,7 @@ const ButtonSub= styled.button`
 
 export default function Form(){
     const dispatch = useDispatch()
-    let countriesForm = useSelector((state)=> state.secondCountry)
+    const countriesForm = useSelector((state)=> state.secondCountry)
     
     const [activity,setActivity] = useState({
         name: "",
@@ -94,12 +94,10 @@ export default function Form(){
 
     const handleSelect =(e) =>{
         let aux= e.target.value.split(",")
-
         setActivity({
             ...activity,
             countries:[...activity.countries, aux]
-        });
-        dispatch(filterSelected(aux[0]))
+        })
     }
 
     const handleSubmit = (e) =>{
@@ -175,7 +173,7 @@ export default function Form(){
 
                 <ButtonSub type="submit">CREATE</ButtonSub>
                 <br /><br />
-                 <ButtonForm  type="reset">RESET</ButtonForm > 
+                <ButtonForm  type="reset">RESET</ButtonForm > 
            </DivForm>
         </Div>
     )

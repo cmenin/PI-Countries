@@ -1,50 +1,41 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const axios = require('axios');
+const axios = require("axios");
 
 //exportar models
-const { Activity, Country, Op} = require('../db')
+const { Activity, Country, Op } = require("../db");
 
 //get
 
-router.get('/',async(req, res) => {
-const allCountries = await Country.findAll({include: Activity})
+router.get("/", async (req, res) => {
+  const allCountries = await Country.findAll({ include: Activity });
 
-if(req.query.name ){
-    let {name} = req.query;
-    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
+  if (req.query.name) {
+    let { name } = req.query;
+    name = name[0].toUpperCase() + name.slice(1).toLowerCase();
     // console.log(name)
 
     const foundCountry = await Country.findAll({
-        where: {
-            name: {[Op.like]: `%${name}%`}
-            }
-    })
-    res.json(foundCountry)
+      where: {
+        name: { [Op.like]: `%${name}%` },
+      },
+    });
+    res.json(foundCountry);
     // console.log(foundCountry,"<===")
-}else{
+  } else {
+    res.json(allCountries);
+  }
+});
 
-    res.json(allCountries)
-}
-
-
-})
-
-router.get('/detail/:id',async(req,res)=>{
-    const forId = await Country.findByPk(req.params.id, {
-        include: Activity
-    })
-if(forId){
-    res.json(forId)
-}else{
-    res.status(400).send("country not found")
-}
-
-})
-
-
-
-
+router.get("/detail/:id", async (req, res) => {
+  const forId = await Country.findByPk(req.params.id, {
+    include: Activity,
+  });
+  if (forId) {
+    res.json(forId);
+  } else {
+    res.status(400).send("country not found");
+  }
+});
 
 module.exports = router;
-

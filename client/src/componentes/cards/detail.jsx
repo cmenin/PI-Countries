@@ -47,8 +47,8 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(obtainPorId(id));
-    console.log(id, "--------id-detail");
-    console.log(detail, "--------soy detail");
+    // console.log(id, "--------id-detail");
+    // console.log(detail, "--------soy detail");
   }, [dispatch]);
 
   return (
