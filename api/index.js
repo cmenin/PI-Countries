@@ -24,7 +24,7 @@ const { map } = require('./src/app.js');
 
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(async() => {
+conn.sync({ force: false}).then(async() => {
 
   //quiero que se haga esto antes de levantar el servidor
   const verificacion = await Country.findAll()

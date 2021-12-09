@@ -6,12 +6,13 @@ import SingleCard from "./singleCard";
 import FiltroContinente from "../order/filtradoContinente";
 import FiltroPoblacion from "../order/filtradoPoblacion";
 import PorActividad from "../order/porActividad"
-import { obtain } from "../../redux/actions/index";
+import { obtain, setLoading } from "../../redux/actions/index";
 import Paginado from "../paginado/paginado.jsx";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchbar/searchBar";
 import styled from "styled-components";
 import mapa from "../../imagenes/mapa.jpg"
+import Loading from "../loading/loading.jsx";
 
 const MyDivAll= styled.div`
 background-image: url(${mapa});
@@ -32,6 +33,7 @@ export default function AllCard() {
   //variable que guarda el estado global.
 
   const estado = useSelector((state) => state.secondCountry);
+  const loading = useSelector((state) => state.loading);
   const [currentPage,setCurrentPage] = useState(1) 
   const [perPage, setPerPage]= useState(9)
     const indicexOfLastCountry = currentPage * perPage
@@ -45,7 +47,9 @@ export default function AllCard() {
 
 
   const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch(setLoading());
     dispatch(obtain());
   }, [dispatch]);
 
@@ -54,7 +58,10 @@ export default function AllCard() {
     dispatch(obtain())
   }
 
-  return (
+  return  loading? (
+    <Loading /> )
+    :
+    (
     <MyDivAll>
       <h1>App Countries</h1>
 

@@ -9,6 +9,7 @@ const MyPaginado = styled.li`
   padding: 7px 10px;
   border: 1px solid black;
   margin: 2px;
+  opacity: .8;
   &:hover:not(.activo) {
     background-color: gray;
     cursor: pointer;

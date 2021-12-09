@@ -4,6 +4,13 @@ const URL_GET = 'http://localhost:3001/countries/'
 
 
 //traer paises
+export function setLoading(){
+    return{
+        type: "SET_LOADING"
+    }
+}
+
+
 export function obtain(){
     return async function(dispatch){
         //con el dispatch le mandamos la accion al reducer.

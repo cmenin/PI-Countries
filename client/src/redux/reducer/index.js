@@ -2,12 +2,20 @@ const initialState = {
   country: [],
   secondCountry: [],
   detalle:[],
-  activities: []
+  activities: [],
+  loading: false
 };
 
 //primero el estado, dsps la accion.
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_LOADING":
+      return{
+        ...state,
+        loading:true
+      }
+
+
     case "OBTENER_PAIS":
       return {
         //siempre hay que devolver una copia del estado, para no perderlo.
@@ -15,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
         //piso el stado que quiero modificar.
         country: action.payload, //arreglo de paises.
         secondCountry: action.payload,
+        loading:false
       };
       case 'GET_NAME':
         return{
@@ -40,7 +49,8 @@ const rootReducer = (state = initialState, action) => {
     case "OBTENER_ONE":
       return {
         ...state,
-        detalle: action.payload
+        detalle: action.payload,
+        loading: false
       };
 
       case "GET_ACTIVITY":
