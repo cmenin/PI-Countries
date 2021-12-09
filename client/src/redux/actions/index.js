@@ -96,5 +96,15 @@ export function filterActivity(payload){
         payload
     }
 }
+
+export function filterSelected(payload){
+return{
+    type: 'FILTER_SELECT',
+    payload,
+}
+
+}
+
+
 //dispatch---acciones+info-->reducer(gestiona lo que envia el dispatch)--->estado redux
                                     //---> le avisa a todos los componentes que se produjo un cambio.

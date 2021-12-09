@@ -91,6 +91,10 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
 
+      case 'FILTER_SELECT':
+       return{ ...state,
+         secondCountry: state.secondCountry.filter(c=>c.id !== action.payload) }
+
         default:
           return state;
 }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux"
-import { obtain } from "../../redux/actions";
+import { filterSelected, obtain } from "../../redux/actions";
 import {postActivity} from '../../redux/actions/index.js'
 import {Link} from 'react-router-dom';
 import styled from "styled-components";
@@ -69,7 +69,7 @@ const ButtonSub= styled.button`
 
 export default function Form(){
     const dispatch = useDispatch()
-    const countriesForm = useSelector((state)=> state.secondCountry)
+    let countriesForm = useSelector((state)=> state.secondCountry)
     
     const [activity,setActivity] = useState({
         name: "",
@@ -94,10 +94,12 @@ export default function Form(){
 
     const handleSelect =(e) =>{
         let aux= e.target.value.split(",")
+
         setActivity({
             ...activity,
             countries:[...activity.countries, aux]
-        })
+        });
+        dispatch(filterSelected(aux[0]))
     }
 
     const handleSubmit = (e) =>{
