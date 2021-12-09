@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { obtainPorId, setLoading } from "../../redux/actions/index";
+import { obtainPorId } from "../../redux/actions/index";
 import banderas from "../../imagenes/banderas.jpg";
 import { Link, useParams } from "react-router-dom";
-import Loading from "../loading/loading";
 import styled from "styled-components";
 import mapa from "../../imagenes/mapa.jpg";
 
@@ -44,12 +43,10 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detalle);
-  const loading = useSelector((state) => state.loading);
   // console.log(detail,'------detail')
 
   useEffect(() => {
     dispatch(obtainPorId(id));
-    dispatch(setLoading());
     console.log(id, "--------id-detail");
     console.log(detail, "--------soy detail");
   }, [dispatch]);
@@ -62,9 +59,6 @@ export default function Detail() {
           <Button>Home</Button>
         </Link>
       </div>
-      {loading ? (
-        <Loading />
-      ) : (
         <DetailDiv>
           <h2>{detail.name}</h2>
           <img
@@ -99,7 +93,6 @@ export default function Detail() {
             </p>
           </div>
         </DetailDiv>
-      )}
     </DivG>
   );
 }

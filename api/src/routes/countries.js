@@ -48,6 +48,3 @@ if(forId){
 
 module.exports = router;
 
-//if(if){
-//     detroit(en vez de create) 
-// }

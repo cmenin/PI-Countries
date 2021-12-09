@@ -18,7 +18,7 @@ router.get('/', async(req,res)=>{
 
 router.post('/', async( req,res)=>{
     const {name, difficulty, duration, season, countries} = req.body;
-console.log(countries,"soy countries")
+// console.log(countries,"soy countries")
     try {
         const createActivity = await Activity.create({
             name,
@@ -31,7 +31,7 @@ console.log(countries,"soy countries")
         let busqueda = await Country.findByPk(c[0])
         if(busqueda){
 
-        await createActivity.addCountries(busqueda) //countries es el id de pais
+        await createActivity.addCountries(busqueda) 
         }
 
     })
